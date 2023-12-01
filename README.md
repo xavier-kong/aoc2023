@@ -1,4 +1,9 @@
+done:
 1. python
+
+
+
+
 2. javascript
 3. ruby
 4. php
@@ -32,7 +37,6 @@ https://survey.stackoverflow.co/2023/#most-popular-technologies-language-prof
 1. js
 2. html css
 3. sql
-4. python
 5. ts
 6. bash shell
 7. java
