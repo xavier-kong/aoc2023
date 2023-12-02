@@ -1,6 +1,6 @@
 done:
 1. python
-
+2. c++
 
 
 
@@ -10,7 +10,6 @@ done:
 5. java
 6. typescript
 7. c
-8. c++
 9. c#
 10. go
 11. rust
@@ -41,7 +40,6 @@ https://survey.stackoverflow.co/2023/#most-popular-technologies-language-prof
 6. bash shell
 7. java
 8. c#
-9. c++
 10. php
 11. c
 12. go
