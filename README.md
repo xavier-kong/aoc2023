@@ -4,15 +4,18 @@ done:
 
 
 
+not new:
 2. javascript
-3. ruby
-4. php
 5. java
 6. typescript
 7. c
-9. c#
 10. go
 11. rust
+
+new:
+3. ruby
+4. php
+9. c#
 12. html/css
 13. perl
 14. lisp
