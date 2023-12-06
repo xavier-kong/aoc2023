@@ -1,7 +1,7 @@
 done:
 1. python
 2. c++
-
+3. ruby
 
 
 not new:
@@ -13,7 +13,6 @@ not new:
 11. rust
 
 new:
-3. ruby
 4. php
 9. c#
 12. html/css

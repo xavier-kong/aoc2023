@@ -30,7 +30,7 @@ end
 
 mat = []
 
-File.readlines('./test.txt', chomp: true).each do |line|
+File.readlines('./input.txt', chomp: true).each do |line|
     arr = []
 
     line.each_char {
@@ -41,42 +41,49 @@ File.readlines('./test.txt', chomp: true).each do |line|
 end
 
 
-is_part = false
+curr_idx = []
 curr_num = ''
-gears = Hash.new([])
+gears = Hash.new{ |h, k| h[k] = [] }
 
 for i in (0...mat.length)
     for j in (0...mat[i].length)
         if mat[i][j].is_number?
             gear_idx = check_if_gear(mat, i, j)
             if gear_idx
-                is_part = true
+                curr_idx = gear_idx
             end
 
             curr_num = curr_num + mat[i][j]
 
             if j == mat[i].length
-                if is_part
-                    gears[gear_idx] = gears[gear_idx].push(Integer(curr_num))
+                if curr_idx
+                    gears[curr_idx].push(Integer(curr_num))
                 end
 
-                is_part = false
+                curr_idx = false
                 curr_num = ''
             end
         elsif curr_num.length > 0 
-            if is_part
-                gears[gear_idx] = gears[gear_idx].push(Integer(curr_num))
+            if curr_idx
+                gears[curr_idx].push(Integer(curr_num))
             end
 
-            is_part = false
+            curr_idx = false
             curr_num = ''
         end
     end
 end
 
-if curr_num.length > 0 and is_part
+if curr_num.length > 0 and curr_idx
     gears[[mat.length-1, mat[0].length-1]].push(Integer(curr_num))
 end
 
-puts(gears)
 
+sum = 0
+gears.each do |key, value|
+    if value.length == 2
+        sum += value[0] * value[1]
+    end
+end
+
+puts(sum)
