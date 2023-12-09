@@ -5,13 +5,13 @@ File.stream!("test.txt")
       [nums, draw] = String.split(yes, " | ")
       winners = Enum.filter(String.split(nums, " "), fn x -> x != "" end)
 
-
       lucky = Enum.filter(
         Enum.filter(String.split(draw, " "), fn x -> x != "" end), 
         fn num -> Enum.member?(winners, num) 
       end)
 
-      IO.inspect(length(lucky))
+      length(lucky)
     end
   )
+  |> Enum.each(fn n -> IO.inspect(n) end)
   |> Stream.run
