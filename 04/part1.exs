@@ -1,4 +1,6 @@
-File.stream!("test.txt") 
+use Integer
+
+vals = File.stream!("test.txt") 
   |> Stream.map(&String.trim/1)
   |> Stream.map(fn (line) ->
       [_no, yes] = String.split(line, ":")
@@ -13,5 +15,11 @@ File.stream!("test.txt")
       length(lucky)
     end
   )
-  |> Enum.each(fn n -> IO.inspect(n) end)
-  |> Stream.run
+  |> Enum.to_list()
+
+no_zeros = Enum.filter(vals, fn x -> x != 0 end)
+
+ans = Enum.reduce(no_zeros, 0, fn x, acc -> acc + Integer.pow(2, x - 1)  end)
+IO.inspect(ans)
+IO.inspect(vals)
+
