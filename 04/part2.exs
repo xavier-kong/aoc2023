@@ -8,7 +8,7 @@ defmodule Main do
   end
 end
 
-vals = File.stream!("test.txt") 
+possible = File.stream!("test.txt") 
   |> Stream.map(&String.trim/1)
   |> Stream.map(fn (line) ->
       [_no, yes] = String.split(line, ":")
@@ -25,4 +25,8 @@ vals = File.stream!("test.txt")
   )
   |> Enum.to_list()
 
-IO.inspect(vals)
+cards = List.duplicate(1, length(possible))
+
+res = Main.traverse(0, length(possible), cards, possible)
+
+IO.inspect(cards)
