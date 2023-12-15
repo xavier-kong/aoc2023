@@ -3,7 +3,16 @@ defmodule Main do
     if curr_index == end_index do
       cards
     else
+      new_cards = Main.add_cards(curr_index, possible.get(curr_index), cards) 
       traverse(curr_index + 1, end_index, cards, possible)
+    end
+  end
+
+  def add_cards(curr_index, cards_to_add, cards) do
+    if curr_index == length(cards) do
+      cards
+    else
+      #do something
     end
   end
 end
