@@ -12,7 +12,9 @@ defmodule Main do
     if curr_index == length(cards) do
       cards
     else
-      #do something
+      val = Enum.at(cards, curr_index) + cards_to_add
+      new_cards = List.replace_at(cards, curr_index, val)
+      add_cards(curr_index + 1, cards_to_add, new_cards)
     end
   end
 end
