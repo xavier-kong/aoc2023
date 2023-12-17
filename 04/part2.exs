@@ -3,18 +3,22 @@ defmodule Main do
     if curr_index == end_index do
       cards
     else
-      new_cards = Main.add_cards(curr_index, possible.get(curr_index), cards) 
-      traverse(curr_index + 1, end_index, cards, possible)
+      new_cards = Main.add_cards(curr_index, Enum.at(possible, curr_index), cards) 
+      traverse(curr_index + 1, end_index, new_cards, possible)
     end
   end
 
   def add_cards(curr_index, cards_to_add, cards) do
-    if curr_index == length(cards) do
+    if cards_to_add == 0 do
       cards
     else
-      val = Enum.at(cards, curr_index) + cards_to_add
+
+
+      val = Enum.at(cards, curr_index) + 1
+
       new_cards = List.replace_at(cards, curr_index, val)
-      add_cards(curr_index + 1, cards_to_add, new_cards)
+
+      add_cards(curr_index + 1, cards_to_add - 1, new_cards)
     end
   end
 end
@@ -40,4 +44,5 @@ cards = List.duplicate(1, length(possible))
 
 res = Main.traverse(0, length(possible), cards, possible)
 
-IO.inspect(cards)
+IO.inspect(res)
+
