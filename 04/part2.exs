@@ -2,17 +2,30 @@ defmodule Main do
   def traverse(curr_index, end_index, cards, possible) do
     if curr_index == end_index do
       cards
-    else
-      new_cards = Main.add_cards(curr_index, Enum.at(possible, curr_index), cards) 
+    else if Enum.at(possible, curr_index) > 0
+
+    else 
+    traverse(curr_index + 1, end_index, new_cards, possible)
+      new_cards = Main.add_cards(curr_index + 1, Enum.at(possible, curr_index), cards) 
+      IO.inspect(new_cards)
       traverse(curr_index + 1, end_index, new_cards, possible)
     end
+  end
+
+  def move()
+    if moves_left == 0 do
+      cards
+    else
+
+      move(cards, moves_left - 1)
+    end
+
   end
 
   def add_cards(curr_index, cards_to_add, cards) do
     if cards_to_add == 0 do
       cards
     else
-
 
       val = Enum.at(cards, curr_index) + 1
 
@@ -44,5 +57,7 @@ cards = List.duplicate(1, length(possible))
 
 res = Main.traverse(0, length(possible), cards, possible)
 
-IO.inspect(res)
+sum = Enum.reduce(res, fn x, acc -> x + acc end)
+
+IO.inspect(sum)
 
