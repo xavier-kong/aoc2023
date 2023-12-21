@@ -2,7 +2,8 @@ defmodule Main do
   def traverse(curr_index, end_index, cards, possible, cards_left) do
     if curr_index == end_index do
       cards
-    else if cards_left > 0 do
+    end
+    unless cards_left > 0 do
       new_cards = Main.add_cards(curr_index, Enum.at(possible, curr_index), cards)
       traverse(curr_index, end_index, new_cards, possible, cards_left - 1)
     else
@@ -43,7 +44,7 @@ possible = File.stream!("test.txt")
 
 cards = List.duplicate(1, length(possible))
 
-res = Main.traverse(0, length(possible), cards, possible)
+res = Main.traverse(0, length(possible), cards, possible, Enum.at(possible, 0))
 
 sum = Enum.reduce(res, fn x, acc -> x + acc end)
 
