@@ -3,7 +3,7 @@ defmodule Main do
     if curr_index == end_index do
       cards
     end
-    unless cards_left > 0 do
+    unless cards_left <= 0 do
       new_cards = Main.add_cards(curr_index, Enum.at(possible, curr_index), cards)
       traverse(curr_index, end_index, new_cards, possible, cards_left - 1)
     else
