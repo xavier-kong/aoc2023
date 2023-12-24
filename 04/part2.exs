@@ -1,18 +1,15 @@
 defmodule Main do
   def traverse(curr_index, end_index, cards, possible, cards_left) do
-    IO.inspect(curr_index >= end_index)
     if curr_index >= end_index do
       cards
+    else
+      if cards_left > 0 do
+        new_cards = Main.add_cards(curr_index, Enum.at(possible, curr_index), cards)
+        traverse(curr_index, end_index, new_cards, possible, cards_left - 1)
+      else
+        traverse(curr_index + 1, end_index, cards, possible, Enum.at(possible, curr_index + 1))
+      end
     end
-
-    IO.inspect('cont')
-
-    if cards_left > 0 do
-      new_cards = Main.add_cards(curr_index, Enum.at(possible, curr_index), cards)
-      traverse(curr_index, end_index, new_cards, possible, cards_left - 1)
-    end
-    
-    traverse(curr_index + 1, end_index, cards, possible, Enum.at(possible, curr_index + 1))
   end
 
   def add_cards(curr_index, cards_to_add, cards) do
