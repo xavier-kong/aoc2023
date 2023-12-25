@@ -1,12 +1,16 @@
 defmodule Main do
   def traverse(curr_index, end_index, cards, possible, cards_left) do
     if curr_index >= end_index do
+      IO.inspect("end")
+      IO.inspect(cards)
       cards
     else
       if cards_left > 0 do
-        new_cards = Main.add_cards(curr_index, Enum.at(possible, curr_index), cards)
-        traverse(curr_index, end_index, new_cards, possible, cards_left - 1)
+        IO.puts "cards left #{cards_left} cards #{Enum.join(cards, " ")}"
+        new_cards = Main.add_cards(curr_index + 1, Enum.at(possible, curr_index), cards)
+        traverse(curr_index, end_index, new_cards, possible, cards_left - cards_left)
       else
+        IO.puts "cards_left == 0 #{Enum.join(cards, " ")}"
         traverse(curr_index + 1, end_index, cards, possible, Enum.at(possible, curr_index + 1))
       end
     end
@@ -43,7 +47,12 @@ possible = File.stream!("test.txt")
   )
   |> Enum.to_list()
 
+
+IO.inspect(possible)
+
 cards = List.duplicate(1, length(possible))
+
+IO.puts "traverse"
 
 res = Main.traverse(0, length(possible), cards, possible, Enum.at(possible, 0))
 
