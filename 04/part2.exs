@@ -4,15 +4,19 @@ defmodule Main do
       #IO.inspect("end")
       #IO.inspect(cards)
       cards
-    else
-      if cards_left > 0 do
+    #else
+      #if cards_left > 0 do
         #IO.puts "cards left #{cards_left} cards #{Enum.join(cards, " ")}"
-        new_cards = Main.add_cards(curr_index + 1, Enum.at(possible, curr_index), cards)
-        traverse(curr_index, end_index, new_cards, possible, cards_left - 1)
+        #IO.puts "index #{curr_index}"
+        #new_cards = Main.add_cards(curr_index + 1, Enum.at(possible, curr_index), cards)
+        #traverse(curr_index, end_index, new_cards, possible, cards_left - 1)
       else
         #IO.puts "cards_left == 0 #{Enum.join(cards, " ")}"
-        traverse(curr_index + 1, end_index, cards, possible, Enum.at(possible, curr_index + 1))
-      end
+        IO.puts " card left #{cards_left}"
+        new_cards = Main.add_cards(curr_index + 1, Enum.at(possible, curr_index) * Enum.at(cards, curr_index), cards)
+        traverse(curr_index + 1, end_index, new_cards, possible, Enum.at(possible, curr_index + 1) * Enum.at(new_cards, curr_index + 1))
+        #traverse(curr_index + 1, end_index, cards, possible, Enum.at(possible, curr_index + 1) * Enum.at(cards, curr_index + 1))
+      #end
     end
   end
 
